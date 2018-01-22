@@ -4,6 +4,8 @@ function ObstacleCreator() {
     this.obsX = [];
     this.obsY = [];
     this.esPuerta = 0;
+    this.width = 64;
+    this.height = 64;
 }
 
 ObstacleCreator.prototype.createObs = function (board, num) {
@@ -20,16 +22,16 @@ ObstacleCreator.prototype.createObs = function (board, num) {
                 //    this.createDoor(tempX,tempY);
                 // } else 
                 // {
-                    board.map[tempY][tempX] = 2;
-                    this.obsX.push(tempX);
-                    this.obsY.push(tempY);
+                board.map[tempY][tempX] = 2;
+                this.obsX.push(tempX);
+                this.obsY.push(tempY);
                 // }
                 t++;
             }
         }
     }
     console.log(newObs)
-    }
+}
 
 ObstacleCreator.prototype.rand = function (max) {
     return Math.floor(Math.random() * max);

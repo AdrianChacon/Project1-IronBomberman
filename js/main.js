@@ -26,5 +26,6 @@ $(document).ready(function () {
     bomberman = new BombermanCreator();
     newObs = new ObstacleCreator();
     newObs.createObs(newBoard, numObs);
+    console.log(newBoard.map)
     gameStart();
 });
