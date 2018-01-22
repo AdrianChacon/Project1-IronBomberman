@@ -5,7 +5,7 @@ function BombermanCreator() {
     this.nFire = 1;
     this.x = 1;
     this.y = 1;
-    this.maxSpeed = 64;
+    this.maxSpeed = 8;
     this.speedX = 0;
     this.speedY= 0;
     newBomb = new CreateBomb()
@@ -29,32 +29,33 @@ BombermanCreator.prototype.action = function (e) {
             }
             break;
         case 37: // left
-            if (newBoard.map[this.y][this.x - 1] == 0) {
+            // if (newBoard.map[this.y][this.x - 1] == 0) {
                 this.moveX(-1);
-            }
+            // }
             break;
         case 38: // up
-            if (newBoard.map[this.y - 1][this.x] == 0) {
+            // if (newBoard.map[this.y - 1][this.x] == 0) {
                 this.moveY(-1);
-            }
+            // }
             console.log(this.y);
             break;
         case 39: // right
-            if (newBoard.map[this.y][this.x + 1] == 0) {
+            // if (newBoard.map[this.y][this.x + 1] == 0) {
                 this.moveX(1);
-            }
+            // }
             console.log(this.x);
             break;
         case 40: //down
-            if (newBoard.map[this.y + 1][this.x] == 0) {
+            // if (newBoard.map[this.y + 1][this.x] == 0) {
                 this.moveY(1);
-            }
+            // }
             console.log(this.y);
             break;
     }
 }
 BombermanCreator.prototype.stop = function (){
-    this.speed = 0;
+    this.speedX = 0;
+    this.speedY =0;
 }
 BombermanCreator.prototype.moveX = function(direction){
      this.speedX = this.maxSpeed * direction;
