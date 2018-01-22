@@ -15,6 +15,7 @@ function gameStart() {
     newBoard.render();
     newObs.render(newBoard);
     bomberman.render(newBoard,delta);
+    // bomberman.collisionDetector();
     // bomberman.nBomb[0].render();
    // bomberman.win();
     requestAnimationFrame(gameStart)

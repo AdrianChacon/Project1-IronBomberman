@@ -30,9 +30,11 @@ BombermanCreator.prototype.action = function (e) {
             break;
         case 37: // left
             // if (newBoard.map[Math.floor(this.y)][Math.floor(this.x - 1)] == 0) {
-               // if (newBoard.map[Math.floor(this.y)][Math.floor(this.x - speedX)] == 0){
+               // if (newBoard.map[Math.floor(this.y)][Math.floor(this.x - speedX)] == 0){ 
+                   if (this.collisionDetector){
             this.moveX(-1);
                 console.log(this.y+" "+(this.x));
+                   }
                 //console.log(newBoard.map[Math.floor(this.y)][Math.floor(this.x-1)])
         //  } 
             //   }
@@ -56,6 +58,14 @@ BombermanCreator.prototype.action = function (e) {
             // }
             break;
     }
+}
+BombermanCreator.prototype.collisionDetector = function() {
+    for (var i = 0; i<newObs.obsX.length; i++){
+       if ((Math.floor(this.y) == newObs.obsY[i]) && ((Math.floor(this.x) - speedX) == (newObs.obsX[i]))){
+           return false;
+       }
+    }
+    return true;
 }
 BombermanCreator.prototype.stop = function () {
     this.speedX = 0;
