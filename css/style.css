@@ -1,0 +1,12 @@
+body {
+    text-align: center;
+}
+.background {
+    background-image: url("../images/bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#myCanvas {
+    background-color: #add8e6;
+    margin:0 auto;
+}
