@@ -5,6 +5,9 @@ function BombermanCreator() {
     this.nFire = 1;
     this.x = 1;
     this.y = 1;
+    this.maxSpeed = 64;
+    this.speedX = 0;
+    this.speedY= 0;
     newBomb = new CreateBomb()
     this.nBomb.push(newBomb);
     // newBoard.map[this.x][this.y] = 4;
@@ -27,37 +30,49 @@ BombermanCreator.prototype.action = function (e) {
             break;
         case 37: // left
             if (newBoard.map[this.y][this.x - 1] == 0) {
-                this.x--;
+                this.moveX(-1);
             }
             break;
         case 38: // up
             if (newBoard.map[this.y - 1][this.x] == 0) {
-                this.y--;
+                this.moveY(-1);
             }
             console.log(this.y);
             break;
         case 39: // right
             if (newBoard.map[this.y][this.x + 1] == 0) {
-                this.x++;
+                this.moveX(1);
             }
             console.log(this.x);
             break;
         case 40: //down
             if (newBoard.map[this.y + 1][this.x] == 0) {
-                this.y++;
+                this.moveY(1);
             }
             console.log(this.y);
             break;
     }
 }
-
-BombermanCreator.prototype.render = function (board) {
+BombermanCreator.prototype.stop = function (){
+    this.speed = 0;
+}
+BombermanCreator.prototype.moveX = function(direction){
+     this.speedX = this.maxSpeed * direction;
+  }
+  BombermanCreator.prototype.moveY = function(direction){
+     this.speedY = this.maxSpeed * direction;
+  }
+BombermanCreator.prototype.render = function (board,delta) {
+    this.x += this.speedX/1000*delta;
+    this.y += this.speedY/1000*delta;
+    console.log('x '+this.x)
+    console.log('y '+this.y)
     board.ctx.fillStyle = "#ff8000";
     board.ctx.fillRect(this.x * 64 + 16, this.y * 64 + 16, 32, 32);
-    board.ctx.fillStyle = "#000000";
     for (var i = 0; i < this.nBomb.length; i++) {
         if (this.nBomb[i].activa) {
             // this.nBomb[i].render();
+            board.ctx.fillStyle = "#000000";
             board.ctx.fillRect((this.nBomb[i].xB) * 64 + 16, (this.nBomb[i].yB) * 64 + 16, 32, 32);
             this.nBomb[i].explosion();
         }
