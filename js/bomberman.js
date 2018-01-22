@@ -34,12 +34,13 @@ BombermanCreator.prototype.action = function (e) {
             // if (newBoard.map[Math.floor(this.y)][Math.floor(this.x - 1)] == 0) {
             // if (newBoard.map[Math.floor(this.y)][Math.floor(this.x - speedX)] == 0){ 
             // if (this.collisionDetector()) {
-                // console.log([Math.floor(this.y)]+' '+[Math.floor(this.x)]) 
+            // console.log([Math.floor(this.y)]+' '+[Math.floor(this.x)]) 
             //     {
-                // if(this.x + this.speedX;
+            // if(this.x + this.speedX;
+            if (newBoard.map[Math.floor(this.y)][Math.floor(this.x - (this.speedX / 64))] == 0) {
 
-            this.moveX(-1);
-
+                this.moveX(-1);
+            }
             // this.stop()
             //     } else {
             //         this.stop();
@@ -52,31 +53,40 @@ BombermanCreator.prototype.action = function (e) {
             break;
         case 38: // up
             // if (newBoard.map[this.y - 1][this.x] == 0) {
-            this.moveY(-1);
+            if (newBoard.map[Math.floor(this.y - (this.speedY / 64))][Math.floor(this.x)] == 0) {
+
+                this.moveY(-1);
+            } 
             // console.log(this.y + " " + (this.x));
             // }
             break;
         case 39: // right
             // if (newBoard.map[this.y][this.x + 1] == 0) {
-            this.moveX(1);
+            if (newBoard.map[Math.floor(this.y)][Math.floor(this.x + (this.speedX / 64))] == 0) {
+
+                this.moveX(1);
+            }
             // console.log(this.y + " " + (this.x));
             // }
             break;
         case 40: //down
             // if (newBoard.map[this.y + 1][this.x] == 0) {
-            this.moveY(1);
+            if (newBoard.map[Math.floor(this.y + (this.speedX / 64))][Math.floor(this.x)] == 0) {
+
+                this.moveY(1);
+            }
             // console.log(this.y + " " + (this.x));
             // }
             break;
     }
     console.log(((64 * this.x) + 16) + '-' + ((64 * this.y) + 16))
-//     if((newBoard.map[Math.floor(this.y)][Math.floor(this.x)])!=0)
-//     {
-//         this.stop();
-//     }
+    //     if((newBoard.map[Math.floor(this.y)][Math.floor(this.x)])!=0)
+    //     {
+    //         this.stop();
+    //     }
 }
 BombermanCreator.prototype.collisionDetector = function () {
-        this.stop()
+    this.stop()
 
 
     //    if (this.y)
@@ -109,7 +119,7 @@ BombermanCreator.prototype.moveY = function (direction) {
 BombermanCreator.prototype.render = function (board, delta) {
     this.x += ((this.speedX / 1000) * delta);
     this.y += ((this.speedY / 1000) * delta);
-    
+
     // console.log('x ' + this.x)
     // console.log('y ' + this.y)
     //AQUI PONGO EL COLISION DETECTOR
