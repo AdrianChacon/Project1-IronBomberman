@@ -5,9 +5,9 @@ function BombermanCreator() {
     this.nFire = 1;
     this.x = 1;
     this.y = 1;
-    this.maxSpeed = 8;
+    this.maxSpeed = 4;
     this.speedX = 0;
-    this.speedY= 0;
+    this.speedY = 0;
     newBomb = new CreateBomb()
     this.nBomb.push(newBomb);
     // newBoard.map[this.x][this.y] = 4;
@@ -22,52 +22,56 @@ BombermanCreator.prototype.action = function (e) {
                     this.nBomb[i].yB = this.y;
                     this.nBomb[i].momentoDeCreacion = Date.now();
                     this.nBomb[i].activa = true;
-                    console.log(this.x+","+this.y)
+                    // console.log(this.x + "," + this.y)
                     newBoard.map[this.y][this.x] = 3;
-                    console.log(newBoard.map)
+                    // console.log(newBoard.map)
                 }
             }
             break;
         case 37: // left
-            // if (newBoard.map[this.y][this.x - 1] == 0) {
-                this.moveX(-1);
-            // }
+            // if (newBoard.map[Math.floor(this.y)][Math.floor(this.x - 1)] == 0) {
+               // if (newBoard.map[Math.floor(this.y)][Math.floor(this.x - speedX)] == 0){
+            this.moveX(-1);
+                console.log(this.y+" "+(this.x));
+                //console.log(newBoard.map[Math.floor(this.y)][Math.floor(this.x-1)])
+        //  } 
+            //   }
             break;
         case 38: // up
             // if (newBoard.map[this.y - 1][this.x] == 0) {
-                this.moveY(-1);
+            this.moveY(-1);
+            console.log(this.y+" "+(this.x));
             // }
-            console.log(this.y);
             break;
         case 39: // right
             // if (newBoard.map[this.y][this.x + 1] == 0) {
-                this.moveX(1);
+            this.moveX(1);
+            console.log(this.y+" "+(this.x));
             // }
-            console.log(this.x);
             break;
         case 40: //down
             // if (newBoard.map[this.y + 1][this.x] == 0) {
-                this.moveY(1);
+            this.moveY(1);
+            console.log(this.y+" "+(this.x));
             // }
-            console.log(this.y);
             break;
     }
 }
-BombermanCreator.prototype.stop = function (){
+BombermanCreator.prototype.stop = function () {
     this.speedX = 0;
-    this.speedY =0;
+    this.speedY = 0;
 }
-BombermanCreator.prototype.moveX = function(direction){
-     this.speedX = this.maxSpeed * direction;
-  }
-  BombermanCreator.prototype.moveY = function(direction){
-     this.speedY = this.maxSpeed * direction;
-  }
-BombermanCreator.prototype.render = function (board,delta) {
-    this.x += this.speedX/1000*delta;
-    this.y += this.speedY/1000*delta;
-    console.log('x '+this.x)
-    console.log('y '+this.y)
+BombermanCreator.prototype.moveX = function (direction) {
+    this.speedX = this.maxSpeed * direction;
+}
+BombermanCreator.prototype.moveY = function (direction) {
+    this.speedY = this.maxSpeed * direction;
+}
+BombermanCreator.prototype.render = function (board, delta) {
+    this.x += this.speedX / 1000 * delta;
+    this.y += this.speedY / 1000 * delta;
+    // console.log('x ' + this.x)
+    // console.log('y ' + this.y)
     board.ctx.fillStyle = "#ff8000";
     board.ctx.fillRect(this.x * 64 + 16, this.y * 64 + 16, 32, 32);
     for (var i = 0; i < this.nBomb.length; i++) {
@@ -81,7 +85,7 @@ BombermanCreator.prototype.render = function (board,delta) {
 }
 
 BombermanCreator.prototype.win = function () {
-    if (newBoard.map[this.y][this.x] == 4){
+    if (newBoard.map[this.y][this.x] == 4) {
         alert("You win! :D");
     }
 }

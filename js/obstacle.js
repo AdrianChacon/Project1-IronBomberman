@@ -3,6 +3,7 @@
 function ObstacleCreator() {
     this.puertaX = 0;
     this.puertaY = 0;
+    this.esPuerta = false;
 }
 
 ObstacleCreator.prototype.createObs = function (board, num) {
