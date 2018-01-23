@@ -1,6 +1,7 @@
 var newBoard, bomberman, numObs = 25, newObs, newBomb, fps = 60;
 var now = Date.now(), delta = 0, then;
-var okXizq = true, okYarriba = true, okXder = true, okYabajo = true;
+//Prueba collision detector
+var collisionDirX = 0, collisionDirY = 0;
 
 $(document).keydown(function (e) {
     bomberman.action(e);
