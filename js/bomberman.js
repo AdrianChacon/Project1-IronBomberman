@@ -20,12 +20,14 @@ BombermanCreator.prototype.action = function (e) {
         case 32:
             for (var i = 0; i < this.nBomb.length; i++) {
                 if (this.nBomb[i].activa == false) {
-                    this.nBomb[i].xB = this.x;
-                    this.nBomb[i].yB = this.y;
+                    this.nBomb[i].xB = Math.floor(this.x/64);
+                    console.log(this.nBomb[i].xB)
+                    this.nBomb[i].yB = Math.floor(this.y/64);
+                    console.log(this.nBomb[i].yB)
                     this.nBomb[i].momentoDeCreacion = Date.now();
                     this.nBomb[i].activa = true;
                     // console.log(this.x + "," + this.y)
-                    newBoard.map[this.y][this.x] = 3;
+                    newBoard.map[this.nBomb[i].yB][this.nBomb[i].xB] = 3;
                     // console.log(newBoard.map)
                 }
             }
@@ -107,8 +109,8 @@ BombermanCreator.prototype.collisionDetector = function () {
         okYabajo = false;
         this.stop();
     }
-    for (var i = 1; i < newBoard.mapSizeY-1; i++) {
-        for (var j = 1; j < newBoard.mapSizeX-1; j++) {
+    for (var i = 1; i < newBoard.mapSizeY - 1; i++) {
+        for (var j = 1; j < newBoard.mapSizeX - 1; j++) {
             // console.log()
             // console.log(bomberman.x + ' ' + newObs.obsX[i] + ' ' + newObs.width)
             if (newBoard.map[i][j] != 0) {
@@ -118,16 +120,15 @@ BombermanCreator.prototype.collisionDetector = function () {
                     ((bomberman.y) < ((64 * i) + newObs.height)) &&
                     ((bomberman.y + bomberman.height) > (64 * i))
                 ) {
-                    console.log("entro")
-                    this.stop()
-                    console.log("hola")
-                    // return false;
-                    // The objects are touching
+                    this.stop();
                 }
+                // return false;
+                // The objects are touching
             }
         }
+    }
     //     //     return true;
-        }
+    // }
     // }
     // return true;
 }
@@ -144,16 +145,10 @@ BombermanCreator.prototype.moveY = function (direction) {
 BombermanCreator.prototype.render = function (board, delta) {
     this.x += ((this.speedX / 1000) * delta);
     this.y += ((this.speedY / 1000) * delta);
-    // console.log('x ' + this.x)
-    // console.log('y ' + this.y)
-    //AQUI PONGO EL COLISION DETECTOR
     this.collisionDetector();
-
-
     board.ctx.fillStyle = "#ff8000";
     board.ctx.fillRect(this.x, this.y, 32, 32);
     // board.ctx.fillRect(this.x * 64 , this.y * 64, 64, 64);
-
     for (var i = 0; i < this.nBomb.length; i++) {
         if (this.nBomb[i].activa) {
             // this.nBomb[i].render();
@@ -163,7 +158,6 @@ BombermanCreator.prototype.render = function (board, delta) {
         }
     }
 }
-
 BombermanCreator.prototype.win = function () {
     if (newBoard.map[this.y][this.x] == 4) {
         alert("You win! :D");

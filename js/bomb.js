@@ -57,18 +57,18 @@ CreateBomb.prototype.explosion = function () {
             }
         }
         newBoard.map[this.yB][this.xB] = 0;
-        if ((this.yB - 1 == bomberman.y) && (this.xB == bomberman.x)) {
-            alert("Has muerto :(");
-        }
-        if ((this.yB + 1 == bomberman.y) && (this.xB == bomberman.x)) {
-            alert("Has muerto :(");
-        }
-        if ((this.yB == bomberman.y) && (this.xB - 1 == bomberman.x)) {
-            alert("Has muerto :(");
-        }
-        if ((this.yB == bomberman.y) && (this.xB + 1 == bomberman.x)) {
-            alert("Has muerto :(");
-        }
+        // arreglar con pixeles!!
+        // if ((this.yB - 1 == bomberman.y) && (this.xB == bomberman.x)) {
+        //     alert("Has muerto :(");
+        // }
+        // if ((this.yB + 1 == bomberman.y) && (this.xB == bomberman.x)) {
+        //     alert("Has muerto :(");
+        // }
+        // if ((this.yB == bomberman.y) && (this.xB - 1 == bomberman.x)) {
+        //     alert("Has muerto :(");
+        // }
+        // if ((this.yB == bomberman.y) && (this.xB + 1 == bomberman.x)) {
+        //     alert("Has muerto :(");
+        // }
     }
-    console.log(newBoard.map)
 }
