@@ -1,11 +1,16 @@
 var newBoard, bomberman, numObs = 25, newObs, newBomb, fps = 60;
 var now = Date.now(), delta = 0, then;
+var okXizq = true, okYarriba = true, okXder = true, okYabajo = true;
 
 $(document).keydown(function (e) {
     bomberman.action(e);
 });
 $(document).keyup(function (e) {
     bomberman.stop(e);
+    okXder = true;
+    okXizq = true;
+    okYabajo = true;
+    okYarriba = true;
 });
 
 function gameStart() {
@@ -14,10 +19,10 @@ function gameStart() {
     delta = now - then;
     newBoard.render();
     newObs.render(newBoard);
-    bomberman.render(newBoard,delta);
+    bomberman.render(newBoard, delta);
     // bomberman.collisionDetector();
     // bomberman.nBomb[0].render();
-   // bomberman.win();
+    // bomberman.win();
     requestAnimationFrame(gameStart)
 }
 

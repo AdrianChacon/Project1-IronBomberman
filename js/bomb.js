@@ -21,6 +21,7 @@ function CreateBomb() {
 //     }
 // }
 
+//Rehacer cuando arregle el problema de la colision
 CreateBomb.prototype.explosion = function () {
     if (Date.now() - this.momentoDeCreacion > 3000) {
         this.activa = false;

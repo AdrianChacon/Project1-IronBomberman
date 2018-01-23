@@ -1,17 +1,17 @@
 //creación del personaje
 function BombermanCreator() {
     //Mi idea es crear un array de objetos bomba, para así saber su posición y cuando se puso.
-    this.nBomb = [];
-    this.nFire = 1;
-    this.x = 1;
-    this.y = 1;
-    this.maxSpeed = 8;
+    this.x = 80;
+    this.y = 80;
+    this.width = 32;
+    this.height = 32;
+    this.maxSpeed = 128;
     this.speedX = 0;
     this.speedY = 0;
+    this.nFire = 1;
+    this.nBomb = [];
     newBomb = new CreateBomb()
     this.nBomb.push(newBomb);
-    this.width = 64;
-    this.height = 64;
     // newBoard.map[this.x][this.y] = 4;
 }
 //habilidades del personaje
@@ -37,14 +37,14 @@ BombermanCreator.prototype.action = function (e) {
             // console.log([Math.floor(this.y)]+' '+[Math.floor(this.x)]) 
             //     {
             // if(this.x + this.speedX;
-            if (newBoard.map[Math.floor(this.y)][Math.floor(this.x - (this.speedX / 64))] == 0) {
-
+            // if (newBoard.map[Math.floor(this.y)][Math.floor(this.x - (this.speedX / 64))] == 0) {
+            if (okXizq) {
                 this.moveX(-1);
+                // } else {this.moveX(1)}
+                // this.stop()
+                //     } else {
+                //         this.stop();
             }
-            // this.stop()
-            //     } else {
-            //         this.stop();
-            //     }
             // console.log(this.y + " " + (this.x));
             // }
             //console.log(newBoard.map[Math.floor(this.y)][Math.floor(this.x-1)])
@@ -53,58 +53,83 @@ BombermanCreator.prototype.action = function (e) {
             break;
         case 38: // up
             // if (newBoard.map[this.y - 1][this.x] == 0) {
-            if (newBoard.map[Math.floor(this.y - (this.speedY / 64))][Math.floor(this.x)] == 0) {
-
+            // if (newBoard.map[Math.floor(this.y - (this.speedY / 64))][Math.floor(this.x)] == 0) {
+            if (okYarriba) {
                 this.moveY(-1);
-            } 
+                // } else {
+                //     this.moveY(1);
+            }
             // console.log(this.y + " " + (this.x));
             // }
             break;
         case 39: // right
             // if (newBoard.map[this.y][this.x + 1] == 0) {
-            if (newBoard.map[Math.floor(this.y)][Math.floor(this.x + (this.speedX / 64))] == 0) {
-
+            // if (newBoard.map[Math.floor(this.y)][Math.floor(this.x + (this.speedX / 64))] == 0) {
+            if (okXder) {
                 this.moveX(1);
+                // } else {this.moveX(-1)}
+                // console.log(this.y + " " + (this.x));
             }
-            // console.log(this.y + " " + (this.x));
-            // }
             break;
         case 40: //down
             // if (newBoard.map[this.y + 1][this.x] == 0) {
-            if (newBoard.map[Math.floor(this.y + (this.speedX / 64))][Math.floor(this.x)] == 0) {
-
+            // if (newBoard.map[Math.floor(this.y + (this.speedX / 64))][Math.floor(this.x)] == 0) {
+            if (okYabajo) {
                 this.moveY(1);
+                // } else {
+                //     this.moveY(-1);
             }
             // console.log(this.y + " " + (this.x));
             // }
             break;
     }
-    console.log(((64 * this.x) + 16) + '-' + ((64 * this.y) + 16))
+    // console.log(((64 * this.x) + 16) + '-' + ((64 * this.y) + 16))
     //     if((newBoard.map[Math.floor(this.y)][Math.floor(this.x)])!=0)
     //     {
     //         this.stop();
     //     }
 }
 BombermanCreator.prototype.collisionDetector = function () {
-    this.stop()
-
-
-    //    if (this.y)
-    // for (var i = 0; i < newObs.obsX.length; i++) {
-    //     console.log()
-    //     console.log(bomberman.x + ' ' + newObs.obsX[i] + ' ' + newObs.width)
-    //     if (
-    //         ((64 * bomberman.x) < (64 * newObs.obsX[i] + newObs.width)) &&
-    //         ((64 * bomberman.x + bomberman.width) > (64 * newObs.obsX[i])) &&
-    //         ((64 * bomberman.y) < (64 * newObs.obsY[i] + newObs.height)) &&
-    //         ((64 * bomberman.y + bomberman.height) > (64 * newObs.obsY[i]))
-    //     ) {
-    //         return false;
-    //         console.log("hola")
-    //         // The objects are touching
-    //     }
-    //     return true;
+    //primero compruebo que no me he salido de los bordes
+    if (bomberman.x < 64) {
+        okXizq = false;
+        this.stop();
+    }
+    if (bomberman.x > 866) {
+        okXder = false;
+        this.stop();
+    }
+    if (bomberman.y < 64) {
+        okYarriba = false;
+        this.stop();
+    }
+    if (bomberman.y > 610) {
+        okYabajo = false;
+        this.stop();
+    }
+    for (var i = 1; i < newBoard.mapSizeY-1; i++) {
+        for (var j = 1; j < newBoard.mapSizeX-1; j++) {
+            // console.log()
+            // console.log(bomberman.x + ' ' + newObs.obsX[i] + ' ' + newObs.width)
+            if (newBoard.map[i][j] != 0) {
+                if (
+                    ((bomberman.x) < ((64 * j) + newObs.width)) &&
+                    ((bomberman.x + bomberman.width) > (64 * j)) &&
+                    ((bomberman.y) < ((64 * i) + newObs.height)) &&
+                    ((bomberman.y + bomberman.height) > (64 * i))
+                ) {
+                    console.log("entro")
+                    this.stop()
+                    console.log("hola")
+                    // return false;
+                    // The objects are touching
+                }
+            }
+        }
+    //     //     return true;
+        }
     // }
+    // return true;
 }
 BombermanCreator.prototype.stop = function () {
     this.speedX = 0;
@@ -119,12 +144,14 @@ BombermanCreator.prototype.moveY = function (direction) {
 BombermanCreator.prototype.render = function (board, delta) {
     this.x += ((this.speedX / 1000) * delta);
     this.y += ((this.speedY / 1000) * delta);
-
     // console.log('x ' + this.x)
     // console.log('y ' + this.y)
     //AQUI PONGO EL COLISION DETECTOR
+    this.collisionDetector();
+
+
     board.ctx.fillStyle = "#ff8000";
-    board.ctx.fillRect(this.x * 64 + 16, this.y * 64 + 16, 32, 32);
+    board.ctx.fillRect(this.x, this.y, 32, 32);
     // board.ctx.fillRect(this.x * 64 , this.y * 64, 64, 64);
 
     for (var i = 0; i < this.nBomb.length; i++) {

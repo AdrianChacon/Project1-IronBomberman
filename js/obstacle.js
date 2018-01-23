@@ -1,9 +1,9 @@
 //Obstaculos que se romperan con las bombas que ponga bomberman.
 
 function ObstacleCreator() {
-    this.obsX = [];
-    this.obsY = [];
-    this.esPuerta = 0;
+    this.position = [];
+    // this.obsY = [];
+    this.isDoor = 0;
     this.width = 64;
     this.height = 64;
 }
@@ -11,21 +11,15 @@ function ObstacleCreator() {
 ObstacleCreator.prototype.createObs = function (board, num) {
     var t = 0;
     var tempX, tempY;
-    this.esPuerta = this.rand(num);
+    this.isDoor = this.rand(num);
     while (t < num) {
         tempX = this.rand(board.mapSizeX);
         tempY = this.rand(board.mapSizeY);
         if (board.map[tempY][tempX] != 1) {
             if (!((tempX == 1 && tempY == 1) || (tempX == 2 && tempY == 1) || (tempX == 1 && tempY == 2))) {
-                // if 
-                // (t == puerta) {
-                //    this.createDoor(tempX,tempY);
-                // } else 
-                // {
                 board.map[tempY][tempX] = 2;
-                this.obsX.push(tempX);
-                this.obsY.push(tempY);
-                // }
+                this.position.push({tempX, tempY});
+                // this.obsY.push(tempY);
                 t++;
             }
         }
