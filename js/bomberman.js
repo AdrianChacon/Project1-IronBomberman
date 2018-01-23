@@ -93,21 +93,25 @@ BombermanCreator.prototype.action = function (e) {
 }
 BombermanCreator.prototype.collisionDetector = function () {
     //primero compruebo que no me he salido de los bordes
-    if (bomberman.x < 64) {
-        okXizq = false;
-        this.stop();
+    if (this.x < 64) {
+      this.x = 65;
+        // okXizq = false;
+        // this.stop();
     }
-    if (bomberman.x > 866) {
-        okXder = false;
-        this.stop();
+    if (this.x > 866) {
+     this.x = 865
+        // okXder = false;
+        // this.stop();
     }
-    if (bomberman.y < 64) {
-        okYarriba = false;
-        this.stop();
+    if (this.y < 64) {
+       this.y = 65
+        // okYarriba = false;
+        // this.stop();
     }
-    if (bomberman.y > 610) {
-        okYabajo = false;
-        this.stop();
+    if (this.y > 610) {
+        this.y = 610
+        // okYabajo = false;
+        // this.stop();
     }
     for (var i = 1; i < newBoard.mapSizeY - 1; i++) {
         for (var j = 1; j < newBoard.mapSizeX - 1; j++) {
@@ -115,12 +119,19 @@ BombermanCreator.prototype.collisionDetector = function () {
             // console.log(bomberman.x + ' ' + newObs.obsX[i] + ' ' + newObs.width)
             if ((newBoard.map[i][j] > 0 ) && (newBoard.map[i][j] < 3  )) {
                 if (
-                    ((bomberman.x) < ((64 * j) + newObs.width)) &&
-                    ((bomberman.x + bomberman.width) > (64 * j)) &&
-                    ((bomberman.y) < ((64 * i) + newObs.height)) &&
-                    ((bomberman.y + bomberman.height) > (64 * i))
+                    ((this.x) < ((64 * j) + newObs.width)) &&
+                    ((this.x + this.width) > (64 * j)) &&
+                    ((this.y) < ((64 * i) + newObs.height)) &&
+                    ((this.y + this.height) > (64 * i))
                 ) {
+
+                    
+                    // console.log(this.x+'-'+ i )
+                    // console.log(this.y +'-'+ j)
+                    
                     this.stop();
+                    // bomberman.x = 64 * j + (bomberman.width);
+                    // bomberman.y = 64 * i + (bomberman.height);
                 }
                 // return false;
                 // The objects are touching
