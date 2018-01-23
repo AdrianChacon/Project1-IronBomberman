@@ -113,7 +113,7 @@ BombermanCreator.prototype.collisionDetector = function () {
         for (var j = 1; j < newBoard.mapSizeX - 1; j++) {
             // console.log()
             // console.log(bomberman.x + ' ' + newObs.obsX[i] + ' ' + newObs.width)
-            if (newBoard.map[i][j] != 0) {
+            if ((newBoard.map[i][j] > 0 ) && (newBoard.map[i][j] < 3  )) {
                 if (
                     ((bomberman.x) < ((64 * j) + newObs.width)) &&
                     ((bomberman.x + bomberman.width) > (64 * j)) &&
