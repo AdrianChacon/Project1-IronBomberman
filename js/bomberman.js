@@ -28,7 +28,9 @@ BombermanCreator.prototype.action = function (e) {
                     console.log(this.nBomb[i].yB)
                     this.nBomb[i].momentoDeCreacion = Date.now();
                     this.nBomb[i].activa = true;
+                    // console.log(this.x + "," + this.y)
                     newBoard.map[this.nBomb[i].yB][this.nBomb[i].xB] = 3;
+                    // console.log(newBoard.map)
                 }
             }
             break;

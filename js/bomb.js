@@ -57,18 +57,18 @@ CreateBomb.prototype.explosion = function () {
             }
         }
         newBoard.map[this.yB][this.xB] = 0;
-        // arreglar con pixeles!!
-        if ((this.yB - 1 == Math.floor((bomberman.y)/64)) && (this.xB == Math.floor(bomberman.x/64))) {
-            alert("Has muerto :(");
-        }
-        if ((this.yB + 1 == Math.floor((bomberman.y)/64)) && (this.xB == Math.floor(bomberman.x/64))) {
-            alert("Has muerto :(");
-        }
-        if ((this.yB == Math.floor((bomberman.y)/64)) && (this.xB - 1 == Math.floor(bomberman.x/64))) {
-            alert("Has muerto :(");
-        }
-        if ((this.yB == Math.floor((bomberman.y)/64)) && (this.xB + 1 == Math.floor(bomberman.x/64))) {
-            alert("Has muerto :(");
-        }
+        // arreglar con 2 Players!!
+        // if ((this.yB - 1 == Math.floor((bomberman.y)/64)) && (this.xB == Math.floor(bomberman.x/64))) {
+        //     alert("Has muerto :(");
+        // }
+        // if ((this.yB + 1 == Math.floor((bomberman.y)/64)) && (this.xB == Math.floor(bomberman.x/64))) {
+        //     alert("Has muerto :(");
+        // }
+        // if ((this.yB == Math.floor((bomberman.y)/64)) && (this.xB - 1 == Math.floor(bomberman.x/64))) {
+        //     alert("Has muerto :(");
+        // }
+        // if ((this.yB == Math.floor((bomberman.y)/64)) && (this.xB + 1 == Math.floor(bomberman.x/64))) {
+        //     alert("Has muerto :(");
+        // }
     }
 }
