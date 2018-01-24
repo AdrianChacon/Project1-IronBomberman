@@ -27,34 +27,15 @@ CreateBomb.prototype.explosion = function () {
         this.activa = false;
         if (newBoard.map[this.yB - 1][this.xB] == 2) {
             newBoard.map[this.yB - 1][this.xB] = 0; // original
-            console.log(newObs);
-
-            if ((newObs.puertaX == this.xB) && (newObs.puertaY == this.yB - 1)) {
-                newBoard.map[this.yB - 1][this.xB] = 4;
-            }
         }
         if (newBoard.map[this.yB + 1][this.xB] == 2) {
             newBoard.map[this.yB + 1][this.xB] = 0; // original
-            console.log(newObs);
-            if ((newObs.puertaX == this.xB) && (newObs.puertaY == this.yB + 1)) {
-                newBoard.map[this.yB + 1][this.xB] = 4;
-            }
         }
         if (newBoard.map[this.yB][this.xB - 1] == 2) {
             newBoard.map[this.yB][this.xB - 1] = 0; // original
-            console.log(newObs);
-
-            if ((newObs.puertaX == this.xB - 1) && (newObs.puertaY == this.yB)) {
-                newBoard.map[this.yB][this.xB - 1] = 4;
-            }
         }
         if (newBoard.map[this.yB][this.xB + 1] == 2) {
             newBoard.map[this.yB][this.xB + 1] = 0; // original
-            console.log(newObs);
-
-            if ((newObs.puertaX == this.xB + 1) && (newObs.puertaY == this.yB)) {
-                newBoard.map[this.yB][this.xB + 1] = 4;
-            }
         }
         newBoard.map[this.yB][this.xB] = 0;
         // arreglar con 2 Players!!
