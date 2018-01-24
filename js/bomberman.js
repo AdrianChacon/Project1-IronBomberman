@@ -18,14 +18,20 @@ function BombermanCreator(x, y) {
 }
 
 BombermanCreator.prototype.dropTheBomb = function () {
-    for (var i = 0; i < this.nBomb.length; i++) {
+    var puesta = false;
+    var i = 0;
+
+    while (!(puesta)&&(i<this.nBomb.length)) {
         if (this.nBomb[i].activa == false) {
+            this.nBomb[i].xB = Math.floor(this.x / 64);
             this.nBomb[i].xB = Math.floor(this.x / 64);
             this.nBomb[i].yB = Math.floor(this.y / 64);
             this.nBomb[i].momentoDeCreacion = Date.now();
             this.nBomb[i].activa = true;
-            // newBoard.map[this.nBomb[i].yB][this.nBomb[i].xB] = 3;
+            puesta = true;
+            console.log('holi')
         }
+        i++;
     }
 }
 
@@ -58,7 +64,6 @@ BombermanCreator.prototype.collisionDetector = function () {
                     }
                     if (this.collisionDirX == 1) {
                         this.x = (j - 1) * 64 + 32
-                        console.log(this.x, this.y)
                     }
                     if (this.collisionDirY == -1) {
                         this.y = (i + 1) * 64
@@ -66,6 +71,21 @@ BombermanCreator.prototype.collisionDetector = function () {
                     if (this.collisionDirY == 1) {
                         this.y = i * 64 - 32
                     }
+                }
+            }
+            // Recoger el power up
+            if (newBoard.map[i][j] == 4) {
+                if (
+                    ((this.x) < ((64 * j) + newObs.width)) &&
+                    ((this.x + this.width) > (64 * j)) &&
+                    ((this.y) < ((64 * i) + newObs.height)) &&
+                    ((this.y + this.height) > (64 * i))
+                ) {
+                    console.log('hola')
+                    newBomb = new CreateBomb()
+                    this.nBomb.push(newBomb);
+                    console.log(this.nBomb);
+                    newBoard.map[i][j] = 0;
                 }
             }
         }

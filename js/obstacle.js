@@ -34,6 +34,10 @@ ObstacleCreator.prototype.render = function (board) {
                 board.ctx.fillStyle = "#8b4513";
                 board.ctx.fillRect(y * 64, x * 64, 64, 64);
             }
+            if (board.map[x][y] == 4){
+                board.ctx.fillStyle = "#ffdf00";
+                board.ctx.fillRect((y * 64) + 16, (x * 64) +16, 32, 32);
+            }
         }
     }
 }
