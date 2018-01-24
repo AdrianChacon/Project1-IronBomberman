@@ -47,37 +47,37 @@ $(document).keydown(function (e) {
 $(document).keyup(function (e) {
     switch (e.which) {
         case 32: // p1.bomb
-        bomberman1.stop();
+            bomberman1.stop();
             break;
         case 37: // p1.left
-        bomberman1.stop();
+            bomberman1.stop();
             break;
         case 38: // p1.up
-        bomberman1.stop();
+            bomberman1.stop();
             break;
         case 39: // p1.right
-        bomberman1.stop();
+            bomberman1.stop();
             break;
         case 40: // p1.down
             bomberman1.stop();
             break;
         case 84: // p2.bomb
-        bomberman2.stop();
-        break;
+            bomberman2.stop();
+            break;
         case 65: // p2.left
-        bomberman2.stop();
-        break;
+            bomberman2.stop();
+            break;
         case 87: // p2.up
-        bomberman2.stop();
-        break;
+            bomberman2.stop();
+            break;
         case 68: // p2.right
-        bomberman2.stop();
-        break;
+            bomberman2.stop();
+            break;
         case 83: // p2.down
             bomberman2.stop();
             break;
     }
-    });
+});
 
 function gameStart() {
     then = now;
