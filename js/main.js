@@ -1,4 +1,4 @@
-var newBoard, bomberman1, bomberman2, numObs = 3, newObs, newBomb, fps = 60;
+var newBoard, bomberman1, bomberman2, numObs = 45, newObs, newBomb, fps = 60;
 var now = Date.now(), delta = 0, then;
 var tecla1 = [], tecla2 = [];
 
@@ -52,6 +52,7 @@ $(document).keydown(function (e) {
         }
     }
 });
+
 $(document).keyup(function (e) {
     if (tecla1.length == 1) {
         switch (e.which) {
@@ -108,6 +109,7 @@ function gameStart() {
     bomberman2.render(newBoard, delta);
     requestAnimationFrame(gameStart)
 }
+
 $(document).ready(function () {
     newBoard = new BoardCreator();
     bomberman1 = new BombermanCreator(80, 80);

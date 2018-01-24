@@ -29,7 +29,6 @@ BombermanCreator.prototype.dropTheBomb = function () {
             this.nBomb[i].momentoDeCreacion = Date.now();
             this.nBomb[i].activa = true;
             puesta = true;
-            console.log('holi')
         }
         i++;
     }
@@ -91,18 +90,22 @@ BombermanCreator.prototype.collisionDetector = function () {
         }
     }
 }
+
 BombermanCreator.prototype.stop = function () {
     this.speedX = 0;
     this.speedY = 0;
     this.collisionDirX = 0;
     this.collisionDirY = 0;
 }
+
 BombermanCreator.prototype.moveX = function (direction) {
     this.speedX = this.maxSpeed * direction;
 }
+
 BombermanCreator.prototype.moveY = function (direction) {
     this.speedY = this.maxSpeed * direction;
 }
+
 BombermanCreator.prototype.render = function (board, delta) {
     this.x += ((this.speedX / 1000) * delta);
     this.y += ((this.speedY / 1000) * delta);
