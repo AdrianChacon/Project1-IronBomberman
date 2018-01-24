@@ -39,30 +39,31 @@ CreateBomb.prototype.explosion = function () {
         }
         newBoard.map[this.yB][this.xB] = 0;
         // PLAYER 1 MUERE
-        if ((this.yB - 1 == Math.floor((bomberman1.y)/64)) && (this.xB == Math.floor(bomberman1.x/64))) {
-            alert("Player 1, Has muerto!! \n Ganador -> Player 2!!");
-        }
-        if ((this.yB + 1 == Math.floor((bomberman1.y)/64)) && (this.xB == Math.floor(bomberman1.x/64))) {
-            alert("Player 1, Has muerto!! \n Ganador -> Player 2!!");
-        }
-        if ((this.yB == Math.floor((bomberman1.y)/64)) && (this.xB - 1 == Math.floor(bomberman1.x/64))) {
-            alert("Player 1, Has muerto!! \n Ganador -> Player 2!!");
-        }
-        if ((this.yB == Math.floor((bomberman1.y)/64)) && (this.xB + 1 == Math.floor(bomberman1.x/64))) {
-            alert("Player 1, Has muerto!! \n Ganador -> Player 2!!");
+        if (((this.yB - 1 == Math.floor((bomberman1.y) / 64)) && (this.xB == Math.floor(bomberman1.x / 64))) ||
+            ((this.yB + 1 == Math.floor((bomberman1.y) / 64)) && (this.xB == Math.floor(bomberman1.x / 64))) ||
+            ((this.yB == Math.floor((bomberman1.y) / 64)) && (this.xB - 1 == Math.floor(bomberman1.x / 64))) ||
+            ((this.yB == Math.floor((bomberman1.y) / 64)) && (this.xB + 1 == Math.floor(bomberman1.x / 64)))) {
+            bomberman1.isAlive = false;
+            console.log(bomberman1.isAlive);
         }
         // PLAYER 2 MUERE
-         if ((this.yB - 1 == Math.floor((bomberman2.y)/64)) && (this.xB == Math.floor(bomberman2.x/64))) {
-            alert("Player 2, Has muerto!! \n Ganador -> Player 1!!");
+        if (((this.yB - 1 == Math.floor((bomberman2.y) / 64)) && (this.xB == Math.floor(bomberman2.x / 64))) ||
+            ((this.yB + 1 == Math.floor((bomberman2.y) / 64)) && (this.xB == Math.floor(bomberman2.x / 64))) ||
+            ((this.yB == Math.floor((bomberman2.y) / 64)) && (this.xB - 1 == Math.floor(bomberman2.x / 64))) ||
+            ((this.yB == Math.floor((bomberman2.y) / 64)) && (this.xB + 1 == Math.floor(bomberman2.x / 64)))) {
+            bomberman2.isAlive = false;
+            console.log(bomberman2.isAlive);
+
         }
-        if ((this.yB + 1 == Math.floor((bomberman2.y)/64)) && (this.xB == Math.floor(bomberman2.x/64))) {
+        if (bomberman1.isAlive && !bomberman2.isAlive) {
             alert("Player 2, Has muerto!! \n Ganador -> Player 1!!");
+        } 
+        if (!bomberman1.isAlive && bomberman2.isAlive) {
+            alert("Player 1, Has muerto!! \n Ganador -> Player 2!!");
+        } 
+        if (!bomberman1.isAlive && !bomberman2.isAlive) {
+            alert("E M P A T E !")
         }
-        if ((this.yB == Math.floor((bomberman2.y)/64)) && (this.xB - 1 == Math.floor(bomberman2.x/64))) {
-            alert("Player 2, Has muerto!! \n Ganador -> Player 1!!");
-        }
-        if ((this.yB == Math.floor((bomberman2.y)/64)) && (this.xB + 1 == Math.floor(bomberman2.x/64))) {
-            alert("Player 2, Has muerto!! \n Ganador -> Player 1!!");
-        }
+
     }
 }

@@ -3,6 +3,7 @@ function BombermanCreator(x,y) {
     //Mi idea es crear un array de objetos bomba, para así saber su posición y cuando se puso.
     this.x = x;
     this.y = y;
+    this.isAlive = true;
     this.width = 32;
     this.height = 32;
     this.maxSpeed = 128;
