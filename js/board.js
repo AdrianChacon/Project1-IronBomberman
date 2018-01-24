@@ -16,7 +16,7 @@ function BoardCreator() {
     [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-  ] // 0 libre 1 pared 2 obst 3 bomb 4 puerta
+  ] // 0 libre 1 pared 2 obst 3 bomb 4 pu
 }
 
 BoardCreator.prototype.render = function () {
@@ -24,15 +24,9 @@ BoardCreator.prototype.render = function () {
   for (var x = 0; x < this.mapSizeY; x++) {
     for (var y = 0; y < this.mapSizeX; y++) {
       if (this.map[x][y] == 1) {
-        // this.ctx.drawImage(document.imgWall, y * 64, x * 64);
         this.ctx.fillStyle = "#666F88";
         this.ctx.fillRect(y * 64, x * 64, 64, 64);
       }
-      // if (this.map[x][y] == 4){
-      //   console.log("puerta")
-      //   this.ctx.fillstyle = "#FFFF00";
-      //   this.ctx.fillRect(x * 64 + 16, y * 64 + 16, 32, 32);
-      // }
     }
   }
 }

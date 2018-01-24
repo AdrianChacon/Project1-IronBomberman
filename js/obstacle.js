@@ -4,6 +4,7 @@ function ObstacleCreator() {
     this.position = [];
     this.width = 64;
     this.height = 64;
+    this.powerUp = 3;
 }
 
 ObstacleCreator.prototype.createObs = function (board, num) {
@@ -21,12 +22,11 @@ ObstacleCreator.prototype.createObs = function (board, num) {
             }
         }
     }
+    console.log(newObs)
 }
-
 ObstacleCreator.prototype.rand = function (max) {
     return Math.floor(Math.random() * max);
 }
-
 ObstacleCreator.prototype.render = function (board) {
     for (var x = 0; x < board.mapSizeY; x++) {
         for (var y = 0; y < board.mapSizeX; y++) {

@@ -1,5 +1,5 @@
 //creación del personaje
-function BombermanCreator(x,y) {
+function BombermanCreator(x, y) {
     //Mi idea es crear un array de objetos bomba, para así saber su posición y cuando se puso.
     this.x = x;
     this.y = y;
@@ -21,12 +21,10 @@ BombermanCreator.prototype.dropTheBomb = function () {
     for (var i = 0; i < this.nBomb.length; i++) {
         if (this.nBomb[i].activa == false) {
             this.nBomb[i].xB = Math.floor(this.x / 64);
-            console.log(this.nBomb[i].xB)
             this.nBomb[i].yB = Math.floor(this.y / 64);
-            console.log(this.nBomb[i].yB)
             this.nBomb[i].momentoDeCreacion = Date.now();
             this.nBomb[i].activa = true;
-            newBoard.map[this.nBomb[i].yB][this.nBomb[i].xB] = 3;
+            // newBoard.map[this.nBomb[i].yB][this.nBomb[i].xB] = 3;
         }
     }
 }
@@ -60,6 +58,7 @@ BombermanCreator.prototype.collisionDetector = function () {
                     }
                     if (this.collisionDirX == 1) {
                         this.x = (j - 1) * 64 + 32
+                        console.log(this.x, this.y)
                     }
                     if (this.collisionDirY == -1) {
                         this.y = (i + 1) * 64
@@ -88,8 +87,10 @@ BombermanCreator.prototype.render = function (board, delta) {
     this.x += ((this.speedX / 1000) * delta);
     this.y += ((this.speedY / 1000) * delta);
     this.collisionDetector();
-    board.ctx.fillStyle = "#ff8000";
-    board.ctx.fillRect(this.x, this.y, 32, 32);
+    if (this.isAlive) {
+        board.ctx.fillStyle = "#ff8000";
+        board.ctx.fillRect(this.x, this.y, 32, 32);
+    }
     for (var i = 0; i < this.nBomb.length; i++) {
         if (this.nBomb[i].activa) {
             board.ctx.fillStyle = "#000000";
@@ -98,6 +99,4 @@ BombermanCreator.prototype.render = function (board, delta) {
         }
     }
 }
-BombermanCreator.prototype.win = function () {
 
-}
