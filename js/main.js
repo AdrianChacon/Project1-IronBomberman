@@ -1,18 +1,83 @@
 var newBoard, bomberman1, bomberman2, numObs = 35, newObs, newBomb, fps = 60;
 var now = Date.now(), delta = 0, then;
-//Prueba collision detector
-var collisionDirX = 0, collisionDirY = 0;
 
 $(document).keydown(function (e) {
-    bomberman1.action(e);
-    bomberman2.action(e);
-
+    switch (e.which) {
+        case 32: // p1.bomb
+            bomberman1.dropTheBomb();
+            break;
+        case 37: // p1.left
+            bomberman1.moveX(-1);
+            bomberman1.collisionDirX = -1
+            break;
+        case 38: // p1.up
+            bomberman1.moveY(-1);
+            bomberman1.collisionDirY = -1
+            break;
+        case 39: // p1.right
+            bomberman1.moveX(1);
+            bomberman1.collisionDirX = 1
+            break;
+        case 40: // p1.down
+            bomberman1.moveY(1);
+            bomberman1.collisionDirY = 1
+            break;
+        case 84: // p2.bomb
+            bomberman2.dropTheBomb();
+            break;
+        case 65: // p2.left
+            bomberman2.moveX(-1);
+            bomberman2.collisionDirX = -1
+            break;
+        case 87: // p2.up
+            bomberman2.moveY(-1);
+            bomberman2.collisionDirY = -1
+            break;
+        case 68: // p2.right
+            bomberman2.moveX(1);
+            bomberman2.collisionDirX = 1
+            break;
+        case 83: // p2.down
+            bomberman2.moveY(1);
+            bomberman2.collisionDirY = 1
+            break;
+    }
 });
+
 $(document).keyup(function (e) {
-    bomberman1.stop(e);
-    bomberman2.action(e);
-
-});
+    switch (e.which) {
+        case 32: // p1.bomb
+        bomberman1.stop();
+            break;
+        case 37: // p1.left
+        bomberman1.stop();
+            break;
+        case 38: // p1.up
+        bomberman1.stop();
+            break;
+        case 39: // p1.right
+        bomberman1.stop();
+            break;
+        case 40: // p1.down
+            bomberman1.stop();
+            break;
+        case 84: // p2.bomb
+        bomberman2.stop();
+        break;
+        case 65: // p2.left
+        bomberman2.stop();
+        break;
+        case 87: // p2.up
+        bomberman2.stop();
+        break;
+        case 68: // p2.right
+        bomberman2.stop();
+        break;
+        case 83: // p2.down
+            bomberman2.stop();
+            break;
+    }
+    });
 
 function gameStart() {
     then = now;
@@ -27,8 +92,8 @@ function gameStart() {
 
 $(document).ready(function () {
     newBoard = new BoardCreator();
-    bomberman1 = new BombermanCreator();
-    bomberman2 = new BombermanCreator();
+    bomberman1 = new BombermanCreator(80, 80);
+    bomberman2 = new BombermanCreator(850, 590);
     newObs = new ObstacleCreator();
     newObs.createObs(newBoard, numObs);
     console.log(newBoard.map)

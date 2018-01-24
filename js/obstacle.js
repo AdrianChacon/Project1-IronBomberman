@@ -2,8 +2,6 @@
 
 function ObstacleCreator() {
     this.position = [];
-    // this.obsY = [];
-    this.isDoor = 0;
     this.width = 64;
     this.height = 64;
 }
@@ -11,20 +9,18 @@ function ObstacleCreator() {
 ObstacleCreator.prototype.createObs = function (board, num) {
     var t = 0;
     var tempX, tempY;
-    this.isDoor = this.rand(num);
     while (t < num) {
         tempX = this.rand(board.mapSizeX);
         tempY = this.rand(board.mapSizeY);
         if (board.map[tempY][tempX] != 1) {
-            if (!((tempX == 1 && tempY == 1) || (tempX == 2 && tempY == 1) || (tempX == 1 && tempY == 2))) {
+            if (!((tempX == 1 && tempY == 1) || (tempX == 2 && tempY == 1) || (tempX == 1 && tempY == 2)
+                || (tempX == 13 && tempY == 9) || (tempX == 13 && tempY == 8) || (tempX == 12 && tempY == 9))) {
                 board.map[tempY][tempX] = 2;
-                this.position.push({tempX, tempY});
-                // this.obsY.push(tempY);
+                this.position.push({ tempX, tempY });
                 t++;
             }
         }
     }
-    console.log(newObs)
 }
 
 ObstacleCreator.prototype.rand = function (max) {

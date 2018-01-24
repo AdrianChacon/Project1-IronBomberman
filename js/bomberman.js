@@ -1,8 +1,8 @@
 //creación del personaje
-function BombermanCreator() {
+function BombermanCreator(x,y) {
     //Mi idea es crear un array de objetos bomba, para así saber su posición y cuando se puso.
-    this.x = 80;
-    this.y = 80;
+    this.x = x;
+    this.y = y;
     this.width = 32;
     this.height = 32;
     this.maxSpeed = 128;
@@ -17,41 +17,56 @@ function BombermanCreator() {
     // newBoard.map[this.x][this.y] = 4;
 }
 //habilidades del personaje
-BombermanCreator.prototype.action = function (e) {
-    switch (e.which) {
-        case 32:
-            for (var i = 0; i < this.nBomb.length; i++) {
-                if (this.nBomb[i].activa == false) {
-                    this.nBomb[i].xB = Math.floor(this.x / 64);
-                    console.log(this.nBomb[i].xB)
-                    this.nBomb[i].yB = Math.floor(this.y / 64);
-                    console.log(this.nBomb[i].yB)
-                    this.nBomb[i].momentoDeCreacion = Date.now();
-                    this.nBomb[i].activa = true;
-                    // console.log(this.x + "," + this.y)
-                    newBoard.map[this.nBomb[i].yB][this.nBomb[i].xB] = 3;
-                    // console.log(newBoard.map)
-                }
-            }
-            break;
-        case 37: // left
-            this.moveX(-1);
-            this.collisionDirX = -1
-            break;
-        case 38: // up
-            this.moveY(-1);
-            this.collisionDirY = -1
-            break;
-        case 39: // right
-            this.moveX(1);
-            this.collisionDirX = 1
-            break;
-        case 40: //down
-            this.moveY(1);
-            this.collisionDirY = 1
-            break;
+// BombermanCreator.prototype.action = function (e) {
+//     switch (e.which) {
+//         case 32:
+//             for (var i = 0; i < this.nBomb.length; i++) {
+//                 if (this.nBomb[i].activa == false) {
+//                     this.nBomb[i].xB = Math.floor(this.x / 64);
+//                     console.log(this.nBomb[i].xB)
+//                     this.nBomb[i].yB = Math.floor(this.y / 64);
+//                     console.log(this.nBomb[i].yB)
+//                     this.nBomb[i].momentoDeCreacion = Date.now();
+//                     this.nBomb[i].activa = true;
+//                     // console.log(this.x + "," + this.y)
+//                     newBoard.map[this.nBomb[i].yB][this.nBomb[i].xB] = 3;
+//                     // console.log(newBoard.map)
+//                 }
+//             }
+//             break;
+//         case 37: // left
+//             this.moveX(-1);
+//             this.collisionDirX = -1
+//             break;
+//         case 38: // up
+//             this.moveY(-1);
+//             this.collisionDirY = -1
+//             break;
+//         case 39: // right
+//             this.moveX(1);
+//             this.collisionDirX = 1
+//             break;
+//         case 40: //down
+//             this.moveY(1);
+//             this.collisionDirY = 1
+//             break;
+//     }
+// }
+
+BombermanCreator.prototype.dropTheBomb = function () {
+    for (var i = 0; i < this.nBomb.length; i++) {
+        if (this.nBomb[i].activa == false) {
+            this.nBomb[i].xB = Math.floor(this.x / 64);
+            console.log(this.nBomb[i].xB)
+            this.nBomb[i].yB = Math.floor(this.y / 64);
+            console.log(this.nBomb[i].yB)
+            this.nBomb[i].momentoDeCreacion = Date.now();
+            this.nBomb[i].activa = true;
+            newBoard.map[this.nBomb[i].yB][this.nBomb[i].xB] = 3;
+        }
     }
 }
+
 BombermanCreator.prototype.collisionDetector = function () {
     //primero compruebo que no me he salido de los bordes
     if (this.x < 64) {
