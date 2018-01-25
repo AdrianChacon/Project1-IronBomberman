@@ -112,8 +112,10 @@ function gameStart() {
 
 $(document).ready(function () {
     newBoard = new BoardCreator();
-    bomberman1 = new BombermanCreator(80, 80);
-    bomberman2 = new BombermanCreator(850, 590);
+    // bomberman1 = new BombermanCreator(80, 80)
+    // bomberman2 = new BombermanCreator(850, 590);
+    bomberman1 = new BombermanCreator(80, 80, "./images/guy_izq.png", "./images/guy_der.png", "./images/guy_der.png", "./images/guy_der.png",-1);
+    bomberman2 = new BombermanCreator(850, 590, "./images/le_chuck_izqv3.png", "./images/le_chuck_derv3.png", "./images/le_chuck_izqv3.png", "./images/le_chuck_izqv3.png",1);
     newObs = new ObstacleCreator();
     newObs.createObs(newBoard, numObs);
     console.log(newBoard.map)

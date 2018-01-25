@@ -36,7 +36,6 @@ BoardCreator.prototype.render = function () {
         this.ctx.drawImage(this.wall, y * 64, x * 64, 64, 64);
       }
       if (this.map[x][y] == 5) {
-        console.log('holiii')
         this.ctx.drawImage(this.explosion, y * 64, x * 64, 64, 64);
       }
     }

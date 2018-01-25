@@ -84,7 +84,7 @@ CreateBomb.prototype.explosion = function () {
             ((this.yB == Math.floor((bomberman2.y) / 64)) && (this.xB - 1 == Math.floor(bomberman2.x / 64))) ||
             ((this.yB == Math.floor((bomberman2.y) / 64)) && (this.xB + 1 == Math.floor(bomberman2.x / 64)))) {
             bomberman2.isAlive = false;
-            //Comprobación de las muertes
+        //Comprobación de las muertes
         }
         if (bomberman1.isAlive && !bomberman2.isAlive) {
             alert("Player 2, Has muerto!! \n Ganador -> Player 1!!");

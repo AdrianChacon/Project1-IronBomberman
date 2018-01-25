@@ -1,5 +1,5 @@
 //creación del personaje
-function BombermanCreator(x, y) {
+function BombermanCreator(x, y, imgleft, imgright, imgup, imgdown, inicial) {
     //Mi idea es crear un array de objetos bomba, para así saber su posición y cuando se puso.
     this.x = x;
     this.y = y;
@@ -16,8 +16,18 @@ function BombermanCreator(x, y) {
     this.nBomb.push(newBomb);
     this.bombimg = new Image();
     this.bombimg.src = "./images/bomb.jpg"
-    // this.bombermanimg = new Image();
-    // this.bombermanimg.src = img;
+    this.bomberimg = new Image();
+    this.bomberimg.src = imgleft;
+    this.bombermanimgleft = imgleft;
+    this.bombermanimgright = imgright;
+    this.bombermanimgup = imgup;
+    this.bombermanimgdown = imgdown;
+    this.inicial = inicial;
+    this.shift = 0;
+    this.frameWidth = 47;
+    this.frameHeight = 95;
+    this.totalFrames = 24;
+    this.currentFrame = 0;
 }
 
 BombermanCreator.prototype.dropTheBomb = function () {
@@ -109,6 +119,9 @@ BombermanCreator.prototype.moveY = function (direction) {
 }
 
 BombermanCreator.prototype.render = function (board, delta) {
+    if (this.inicial == -1){
+        this.bomberimg.src = this.bombermanimgright
+    }
     this.x += ((this.speedX / 1000) * delta);
     this.y += ((this.speedY / 1000) * delta);
     this.collisionDetector();
@@ -119,6 +132,22 @@ BombermanCreator.prototype.render = function (board, delta) {
         }
     }
     if (this.isAlive) {
+        if (this.collisionDirX == 1){
+            this.bomberimg.src = this.bombermanimgright;
+        } else if (this.collisionDirY == 1){
+            this.bomberimg.src = this.bombermanimgdown;
+        } else if (this.collisionDirY == -1){
+            this.bomberimg.src = this.bombermanimgup;
+        } else if (this.collisionDirX = -1) {
+            this.bomberimg.src = this.bombermanimgleft;
+        }
+        board.ctx.drawImage(this.bomberimg, this.shift, 0, this.frameWidth, this.frameHeight, this.x, this.y-60, this.frameWidth,this.frameHeight);
+        this.shift += (this.frameWidth);
+        if (this.currentFrame == this.totalFrames) {
+            this.shift = 0;
+            this.currentFrame = 0;
+        }
+        this.currentFrame++;
         board.ctx.fillStyle = "#ff8000";
         board.ctx.fillRect(this.x, this.y, 32, 32);
     }

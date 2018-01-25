@@ -1,11 +1,11 @@
 body {
     text-align: center;
 }
-.background {
+/* .background {
     background-image: url("../images/bg.png");
     background-repeat: no-repeat;
     background-size: cover;
-}
+} */
 #myCanvas {
     margin:0 auto;
 }
