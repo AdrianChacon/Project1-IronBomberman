@@ -5,6 +5,10 @@ function ObstacleCreator() {
     this.width = 64;
     this.height = 64;
     this.powerUp = 3;
+    this.box = new Image();
+    this.box.src = "./images/box.png"
+    this.powerup = new Image();
+    this.powerup.src = "./images/power-up.jpg"
 }
 
 ObstacleCreator.prototype.createObs = function (board, num) {
@@ -32,12 +36,10 @@ ObstacleCreator.prototype.render = function (board) {
     for (var x = 0; x < board.mapSizeY; x++) {
         for (var y = 0; y < board.mapSizeX; y++) {
             if (board.map[x][y] == 2) {
-                board.ctx.fillStyle = "#8b4513";
-                board.ctx.fillRect(y * 64, x * 64, 64, 64);
+                board.ctx.drawImage(this.box,y * 64, x * 64, 64, 64);
             }
             if (board.map[x][y] == 4){
-                board.ctx.fillStyle = "#ffdf00";
-                board.ctx.fillRect((y * 64) + 16, (x * 64) +16, 32, 32);
+                board.ctx.drawImage(this.powerup,(y * 64), (x * 64), 64, 64);
             }
         }
     }

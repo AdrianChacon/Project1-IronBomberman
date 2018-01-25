@@ -1,4 +1,4 @@
-var newBoard, bomberman1, bomberman2, numObs = 45, newObs, newBomb, fps = 60;
+var newBoard, bomberman1, bomberman2, numObs = 3, newObs, newBomb, fps = 60;
 var now = Date.now(), delta = 0, then;
 var tecla1 = [], tecla2 = [];
 

@@ -11,17 +11,20 @@ function BombermanCreator(x, y) {
     this.speedY = 0;
     this.collisionDirX = 0;
     this.collisionDirY = 0;
-    this.nFire = 1;
     this.nBomb = [];
     newBomb = new CreateBomb()
     this.nBomb.push(newBomb);
+    this.bombimg = new Image();
+    this.bombimg.src = "./images/bomb.jpg"
+    // this.bombermanimg = new Image();
+    // this.bombermanimg.src = img;
 }
 
 BombermanCreator.prototype.dropTheBomb = function () {
     var puesta = false;
     var i = 0;
 
-    while (!(puesta)&&(i<this.nBomb.length)) {
+    while (!(puesta) && (i < this.nBomb.length)) {
         if (this.nBomb[i].activa == false) {
             this.nBomb[i].xB = Math.floor(this.x / 64);
             this.nBomb[i].xB = Math.floor(this.x / 64);
@@ -80,7 +83,6 @@ BombermanCreator.prototype.collisionDetector = function () {
                     ((this.y) < ((64 * i) + newObs.height)) &&
                     ((this.y + this.height) > (64 * i))
                 ) {
-                    console.log('hola')
                     newBomb = new CreateBomb()
                     this.nBomb.push(newBomb);
                     console.log(this.nBomb);
@@ -110,16 +112,16 @@ BombermanCreator.prototype.render = function (board, delta) {
     this.x += ((this.speedX / 1000) * delta);
     this.y += ((this.speedY / 1000) * delta);
     this.collisionDetector();
+    for (var i = 0; i < this.nBomb.length; i++) {
+        if (this.nBomb[i].activa) {
+            board.ctx.drawImage(this.bombimg, (this.nBomb[i].xB) * 64, (this.nBomb[i].yB) * 64, 64, 64);
+            this.nBomb[i].explosion();
+        }
+    }
     if (this.isAlive) {
         board.ctx.fillStyle = "#ff8000";
         board.ctx.fillRect(this.x, this.y, 32, 32);
     }
-    for (var i = 0; i < this.nBomb.length; i++) {
-        if (this.nBomb[i].activa) {
-            board.ctx.fillStyle = "#000000";
-            board.ctx.fillRect((this.nBomb[i].xB) * 64 + 16, (this.nBomb[i].yB) * 64 + 16, 32, 32);
-            this.nBomb[i].explosion();
-        }
-    }
+
 }
 

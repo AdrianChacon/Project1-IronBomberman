@@ -4,7 +4,6 @@ function CreateBomb() {
     this.momentoDeCreacion = 0;
     this.activa = false;
 }
-
 //Algoritmo de la explosion
 CreateBomb.prototype.explosion = function () {
     if (Date.now() - this.momentoDeCreacion > 3000) {
@@ -14,7 +13,6 @@ CreateBomb.prototype.explosion = function () {
             for (var i = 0; i < newObs.powerUp; i++) {
                 if (((Object.values(newObs.position[i]))[0] == (this.yB - 1) &&
                     Object.values(newObs.position[i])[1] == (this.xB))) {
-                    console.log('power up!')
                 }
             }
             newBoard.map[this.yB - 1][this.xB] = 4; // power up encontrado
@@ -24,7 +22,6 @@ CreateBomb.prototype.explosion = function () {
             for (var i = 0; i < newObs.powerUp; i++) {
                 if (((Object.values(newObs.position[i]))[1] == (this.yB + 1) &&
                     Object.values(newObs.position[i])[0] == (this.xB))) {
-                    console.log('power up!')
                 }
             }
             newBoard.map[this.yB + 1][this.xB] = 4; // power up encontrado
@@ -34,7 +31,6 @@ CreateBomb.prototype.explosion = function () {
             for (var i = 0; i < newObs.powerUp; i++) {
                 if (((Object.values(newObs.position[i]))[1] == (this.yB) &&
                     Object.values(newObs.position[i])[0] == (this.xB-1))) {
-                    console.log('power up!')
                 }
             }
             newBoard.map[this.yB][this.xB - 1] = 4; // power up encontrado
@@ -44,12 +40,35 @@ CreateBomb.prototype.explosion = function () {
             for (var i = 0; i < newObs.powerUp; i++) {
                 if (((Object.values(newObs.position[i]))[1] == (this.yB) &&
                     Object.values(newObs.position[i])[0] == (this.xB+1))) {
-                    console.log('power up!')
                 }
             }
             newBoard.map[this.yB][this.xB + 1] = 4; // power up encontrado
         }
         newBoard.map[this.yB][this.xB] = 0;
+        if (newBoard.map[this.yB - 1][this.xB] == 0) {
+            newBoard.map[this.yB - 1][this.xB] = 5
+            setTimeout(() => {
+                newBoard.map[this.yB - 1][this.xB] = 0;
+            },1000);
+        }
+        if (newBoard.map[this.yB + 1][this.xB] == 0) {
+            newBoard.map[this.yB + 1][this.xB] = 5;
+            setTimeout(() => {
+                newBoard.map[this.yB + 1][this.xB] = 0;
+            },1000);
+        }
+        if (newBoard.map[this.yB][this.xB - 1] == 0) {
+            newBoard.map[this.yB][this.xB - 1] = 5;
+            setTimeout(() => {
+                newBoard.map[this.yB][this.xB-1] = 0;
+            },1000);
+        }
+        if (newBoard.map[this.yB][this.xB + 1] == 0) {
+            newBoard.map[this.yB][this.xB + 1] = 5;
+            setTimeout(() => {
+                newBoard.map[this.yB][this.xB+1] = 0;
+            },1000);
+        }
         // PLAYER 1 MUERE
         if (((this.yB - 1 == Math.floor((bomberman1.y) / 64)) && (this.xB == Math.floor(bomberman1.x / 64))) ||
             ((this.yB + 1 == Math.floor((bomberman1.y) / 64)) && (this.xB == Math.floor(bomberman1.x / 64))) ||
