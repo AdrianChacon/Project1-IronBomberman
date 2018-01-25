@@ -26,6 +26,7 @@ ObstacleCreator.prototype.createObs = function (board, num) {
             }
         }
     }
+    console.log(newObs)
 }
 
 ObstacleCreator.prototype.rand = function (max) {

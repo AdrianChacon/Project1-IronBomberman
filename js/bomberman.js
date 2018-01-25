@@ -17,12 +17,12 @@ function BombermanCreator(x, y, imgleft, imgright, imgup, imgdown, inicial) {
     this.bombimg = new Image();
     this.bombimg.src = "./images/bomb.jpg"
     this.bomberimg = new Image();
-    this.bomberimg.src = imgleft;
-    this.bombermanimgleft = imgleft;
-    this.bombermanimgright = imgright;
-    this.bombermanimgup = imgup;
-    this.bombermanimgdown = imgdown;
     this.inicial = inicial;
+    this.bomberimg.src = "./images/"+ this.inicial +".png";
+    this.bombermanimgleft = "./images/"+ imgleft +".png";
+    this.bombermanimgright = "./images/"+ imgright +".png";
+    this.bombermanimgup = "./images/"+ imgup +".png";
+    this.bombermanimgdown = "./images/"+ imgdown +".png";
     this.shift = 0;
     this.frameWidth = 47;
     this.frameHeight = 95;
@@ -33,7 +33,6 @@ function BombermanCreator(x, y, imgleft, imgright, imgup, imgdown, inicial) {
 BombermanCreator.prototype.dropTheBomb = function () {
     var puesta = false;
     var i = 0;
-
     while (!(puesta) && (i < this.nBomb.length)) {
         if (this.nBomb[i].activa == false) {
             this.nBomb[i].xB = Math.floor(this.x / 64);
@@ -119,9 +118,6 @@ BombermanCreator.prototype.moveY = function (direction) {
 }
 
 BombermanCreator.prototype.render = function (board, delta) {
-    if (this.inicial == -1){
-        this.bomberimg.src = this.bombermanimgright
-    }
     this.x += ((this.speedX / 1000) * delta);
     this.y += ((this.speedY / 1000) * delta);
     this.collisionDetector();
@@ -132,15 +128,19 @@ BombermanCreator.prototype.render = function (board, delta) {
         }
     }
     if (this.isAlive) {
+        if (this.collisionDirX == 0 && this.collisionDirY == 0){
+            this.bomberimg.src = "./images/"+ this.inicial +".png";
+            }
+        }
         if (this.collisionDirX == 1){
             this.bomberimg.src = this.bombermanimgright;
         } else if (this.collisionDirY == 1){
             this.bomberimg.src = this.bombermanimgdown;
         } else if (this.collisionDirY == -1){
             this.bomberimg.src = this.bombermanimgup;
-        } else if (this.collisionDirX = -1) {
+        } else if (this.collisionDirX == -1) {
             this.bomberimg.src = this.bombermanimgleft;
-        }
+        } 
         board.ctx.drawImage(this.bomberimg, this.shift, 0, this.frameWidth, this.frameHeight, this.x, this.y-60, this.frameWidth,this.frameHeight);
         this.shift += (this.frameWidth);
         if (this.currentFrame == this.totalFrames) {
@@ -148,9 +148,9 @@ BombermanCreator.prototype.render = function (board, delta) {
             this.currentFrame = 0;
         }
         this.currentFrame++;
-        board.ctx.fillStyle = "#ff8000";
-        board.ctx.fillRect(this.x, this.y, 32, 32);
-    }
+        // board.ctx.fillStyle = "#ff8000";
+        // board.ctx.fillRect(this.x, this.y, 32, 32);
+    
 
 }
 

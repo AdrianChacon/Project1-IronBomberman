@@ -1,10 +1,12 @@
-var newBoard, bomberman1, bomberman2, numObs = 3, newObs, newBomb, fps = 60;
+var newBoard, bomberman1, bomberman2, numObs = 5, newObs, newBomb, fps = 60;
 var now = Date.now(), delta = 0, then;
 var tecla1 = [], tecla2 = [];
 
 $(document).keydown(function (e) {
     if (tecla1.length == 0) {
-        tecla1.push('1');
+        console.log(tecla1);
+        tecla1.push('quieto');
+        console.log(tecla1);
         switch (e.which) {
             case 32: // p1.bomb
                 bomberman1.dropTheBomb();
@@ -12,18 +14,22 @@ $(document).keydown(function (e) {
             case 37: // p1.left
                 bomberman1.moveX(-1);
                 bomberman1.collisionDirX = -1
+                console.log("left")
                 break;
             case 38: // p1.up
                 bomberman1.moveY(-1);
                 bomberman1.collisionDirY = -1
+                console.log("up")
                 break;
             case 39: // p1.right
                 bomberman1.moveX(1);
                 bomberman1.collisionDirX = 1
+                console.log("right")
                 break;
             case 40: // p1.down
                 bomberman1.moveY(1);
                 bomberman1.collisionDirY = 1
+                console.log("down")
                 break;
         };
     }
@@ -52,7 +58,6 @@ $(document).keydown(function (e) {
         }
     }
 });
-
 $(document).keyup(function (e) {
     if (tecla1.length == 1) {
         switch (e.which) {
@@ -92,13 +97,10 @@ $(document).keyup(function (e) {
             case 83: // p2.down
                 bomberman2.stop();
                 break;
-
         }
         tecla2.pop();
     }
-
 });
-
 function gameStart() {
     then = now;
     now = Date.now();
@@ -109,13 +111,10 @@ function gameStart() {
     bomberman2.render(newBoard, delta);
     requestAnimationFrame(gameStart)
 }
-
 $(document).ready(function () {
     newBoard = new BoardCreator();
-    // bomberman1 = new BombermanCreator(80, 80)
-    // bomberman2 = new BombermanCreator(850, 590);
-    bomberman1 = new BombermanCreator(80, 80, "./images/guy_izq.png", "./images/guy_der.png", "./images/guy_der.png", "./images/guy_der.png",-1);
-    bomberman2 = new BombermanCreator(850, 590, "./images/le_chuck_izqv3.png", "./images/le_chuck_derv3.png", "./images/le_chuck_izqv3.png", "./images/le_chuck_izqv3.png",1);
+    bomberman1 = new BombermanCreator(80, 80, "guy_izq", "guy_der", "guy_der", "guy_der", "guy_der");
+    bomberman2 = new BombermanCreator(850, 590, "lch_izq", "lch_der", "lch_izq", "lch_izq", "lch_izq");
     newObs = new ObstacleCreator();
     newObs.createObs(newBoard, numObs);
     console.log(newBoard.map)
