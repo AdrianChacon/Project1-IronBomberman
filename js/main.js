@@ -12,22 +12,18 @@ $(document).keydown(function (e) {
             case 37: // p1.left
                 bomberman1.moveX(-1);
                 bomberman1.collisionDirX = -1
-                console.log("left")
                 break;
             case 38: // p1.up
                 bomberman1.moveY(-1);
                 bomberman1.collisionDirY = -1
-                console.log("up")
                 break;
             case 39: // p1.right
                 bomberman1.moveX(1);
                 bomberman1.collisionDirX = 1
-                console.log("right")
                 break;
             case 40: // p1.down
                 bomberman1.moveY(1);
                 bomberman1.collisionDirY = 1
-                console.log("down")
                 break;
         };
     }
@@ -98,6 +94,7 @@ $(document).keyup(function (e) {
         tecla2.pop();
     }
 });
+
 function gameStart() {
     then = now;
     now = Date.now();
@@ -114,6 +111,6 @@ $(document).ready(function () {
     bomberman2 = new BombermanCreator(850, 590, "lch_izq", "lch_der", "lch_izq", "lch_izq", "lch_izq");
     newObs = new ObstacleCreator();
     newObs.createObs(newBoard, numObs);
-    console.log(newBoard.map)
+    console.log(newBoard.map);
     gameStart();
 });

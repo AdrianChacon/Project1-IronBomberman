@@ -147,9 +147,5 @@ BombermanCreator.prototype.render = function (board, delta) {
             this.currentFrame = 0;
         }
         this.currentFrame++;
-        // board.ctx.fillStyle = "#ff8000";
-        // board.ctx.fillRect(this.x, this.y, 32, 32);
-    
-
 }
 
