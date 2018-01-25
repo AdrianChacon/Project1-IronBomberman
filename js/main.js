@@ -4,9 +4,7 @@ var tecla1 = [], tecla2 = [];
 
 $(document).keydown(function (e) {
     if (tecla1.length == 0) {
-        console.log(tecla1);
-        tecla1.push('quieto');
-        console.log(tecla1);
+        tecla1.push('quieto1');
         switch (e.which) {
             case 32: // p1.bomb
                 bomberman1.dropTheBomb();
@@ -34,7 +32,7 @@ $(document).keydown(function (e) {
         };
     }
     if (tecla2.length == 0) {
-        tecla2.push('2')
+        tecla2.push('quieto2')
         switch (e.which) {
             case 84: // p2.bomb
                 bomberman2.dropTheBomb();
@@ -80,7 +78,6 @@ $(document).keyup(function (e) {
         tecla1.pop();
     }
     if (tecla2.length == 1) {
-
         switch (e.which) {
             case 84: // p2.bomb
                 bomberman2.stop();

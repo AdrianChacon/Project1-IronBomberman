@@ -44,6 +44,8 @@ CreateBomb.prototype.explosion = function () {
                 if (((Object.values(newObs.position[i]))[1] == (this.yB) &&
                     Object.values(newObs.position[i])[0] == (this.xB + 1))) {
                     newBoard.map[this.yB][this.xB + 1] = 4; // power up encontrado
+
+                    
                 }
             }
         }

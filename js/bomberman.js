@@ -94,7 +94,6 @@ BombermanCreator.prototype.collisionDetector = function () {
                 ) {
                     newBomb = new CreateBomb()
                     this.nBomb.push(newBomb);
-                    console.log(this.nBomb);
                     newBoard.map[i][j] = 0;
                 }
             }
