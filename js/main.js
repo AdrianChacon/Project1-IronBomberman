@@ -1,8 +1,10 @@
-var newBoard, bomberman1, bomberman2, numObs = 5, newObs, newBomb, fps = 60;
+var newBoard, bomberman1, bomberman2, numObs = 30, newObs, newBomb, fps = 60;
 var now = Date.now(), delta = 0, then;
 var tecla1 = [], tecla2 = [];
+var portada = 0;
 
 $(document).keydown(function (e) {
+
     if (tecla1.length == 0) {
         switch (e.which) {
             case 32: // p1.bomb
@@ -111,6 +113,7 @@ function gameStart() {
     newObs.render(newBoard);
     bomberman1.render(newBoard, delta);
     bomberman2.render(newBoard, delta);
+
     requestAnimationFrame(gameStart)
 }
 $(document).ready(function () {
