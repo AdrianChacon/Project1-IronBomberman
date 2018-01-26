@@ -88,13 +88,13 @@ CreateBomb.prototype.explosion = function () {
             //Comprobación de las muertes
         }
         if (bomberman1.isAlive && !bomberman2.isAlive) {
-            alert("Player 2, Has muerto!! \n Ganador -> Player 1!!");
+            alert("Ganador... Guybrush Threepwood!!!");
         }
         if (!bomberman1.isAlive && bomberman2.isAlive) {
-            alert("Player 1, Has muerto!! \n Ganador -> Player 2!!");
+            alert("Ganador... El temido pirata Le Marc!!");
         }
         if (!bomberman1.isAlive && !bomberman2.isAlive) {
-            alert("E M P A T E !")
+            alert("E M P A T E !! :o")
         }
     }
 }
